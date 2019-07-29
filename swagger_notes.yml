@@ -1,0 +1,75 @@
+# the swagger version
+swagger: "2.0"
+# new scope of info about the API being built
+info:
+  # description of what the API does
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+# the MIME data the API expects
+consumes:
+  - "application/json"
+# data the API produces
+produces:
+  - "application/json"
+# defines the root of the API path
+basePath: "/api"
+
+# Paths supported by the server application
+# this defines where API URL endpoints are defined
+paths:
+  # define a URL endpoint, people
+  /people:
+    # describes the behavior on a get request
+    get:
+      # def the python import path/function that will respond to this request
+      operationId: "people.read"
+      # defines a group for the UI
+      tags:
+        - "People"
+      # def the UI display text for the endpoint
+      summary: "The people data structure supported by the server application"
+      # description the UI will display
+      description: "Read the list of people"
+      # define the response
+      responses:
+        # successful response
+        200:
+          description: "Successful read people list operation"
+          # define the response structure
+          schema:
+            type: "array"
+            # define the array's contents
+            items:
+              # define data as key/value pairs
+              properties:
+                # fname is a variable of type string
+                fname:
+                  type: "string"
+                lname:
+                  type: "string"
+                timestamp:
+                  type: "string"
+    post:
+      operationId: people.create
+      tags:
+        - people
+      summary: Create a person and add it to the people list
+      description: Create a new person in the people list
+      parameters:
+        - name: person
+          in: body
+          description: Person to create
+          required: True
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: First name of person to create
+              lname:
+                type: string
+                description: Last name of person to create
+      responses:
+        201:
+          description: Successfully created person in list
