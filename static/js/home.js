@@ -1,4 +1,3 @@
-
 /*
  * JavaScript file for the application to demonstrate
  * using the API
