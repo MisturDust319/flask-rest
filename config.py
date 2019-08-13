@@ -14,7 +14,7 @@ app = connex_app.app
 # config the SQAlchemy part of the app instance
 app.config['SQLALCHEMY_ECHO'] = True # sets it so SQL statements are echoed to console
 # prob should disable this if you deploy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + os.path.join(basedir, 'people.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'people.db')
 # sets up the DB
 # use sqlite as the db, and store the db as people.db in the local directory
 # different db tools will have different config options
