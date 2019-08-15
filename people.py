@@ -71,10 +71,7 @@ def create(person):
     fname = person.get('fname')
     lname = person.get('lname')
 
-    existing_person = Person.query \
-        .filter(Person.fname == fname) \
-        .filter(Person.lname == lname) \
-        .one_or_none()
+    existing_person = Person.query.filter(Person.fname == fname).filter(Person.lname == lname).one_or_none()
 
     # Can we insert this person?
     if existing_person is None:

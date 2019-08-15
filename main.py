@@ -1,26 +1,32 @@
-__name__ = "__main__"
 
+"""
+Main module of the server file
+"""
+
+# 3rd party moudles
 from flask import render_template
 
-import connexion
+# local modules
+import config
 
-# create app instance
-app = connexion.App(__name__, specification_dir='./')
 
-# read the swagger.yml file to config endpoints
-app.add_api('swagger.yml')
-# this is a YAML or JSON file that configures i/o validation
-# url endpoint definition, and Swagger UI
+# Get the application instance
+connex_app = config.connex_app
 
-# create URL route in app for "/"
-@app.route('/')
+# Read the swagger.yml file to configure the endpoints
+connex_app.add_api("swagger.yml")
+
+
+# create a URL route in our application for "/"
+@connex_app.route("/")
 def home():
     """
-    responds to URL localhost:5000/
-    :return: rendered template 'home.html'
+    This function just responds to the browser URL
+    localhost:5000/
+    :return:        the rendered template "home.html"
     """
-    return render_template('home.html')
+    return render_template("home.html")
 
-# if in standalone mode, run app
+
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    connex_app.run(host="127.0.0.1", debug=True)
